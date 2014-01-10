@@ -242,13 +242,6 @@ def cache_tree_children(queryset):
     current_path = []
     top_nodes = []
 
-    # If ``queryset`` is QuerySet-like, set ordering to depth-first
-    if hasattr(queryset, 'order_by'):
-        mptt_opts = queryset.model._mptt_meta
-        tree_id_attr = mptt_opts.tree_id_attr
-        left_attr = mptt_opts.left_attr
-        queryset = queryset.order_by(tree_id_attr, left_attr)
-
     if queryset:
         # Get the model's parent-attribute name
         parent_attr = queryset[0]._mptt_meta.parent_attr
